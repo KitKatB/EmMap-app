@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="XTabs.CustomVision" Title= "Custom Vision">
+             x:Class="XTabs.CustomVision" Title= "Choose analyzer">
     <ContentPage.Content>
         <StackLayout Margin="20" Orientation="Vertical">
             <Label Text="Custom Vision Tab" VerticalOptions="Center" HorizontalOptions="Center" />
-            <Button Text="Take Photo and Analyze" Clicked="loadCamera" />
+            <Button Text="Photo Analyzer" Clicked="loadCamera" />
             <Image x:Name="image" />
         </StackLayout>
     </ContentPage.Content>
