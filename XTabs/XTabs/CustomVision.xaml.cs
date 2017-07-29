@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.Collections.Generic;
-//using Plugin.Geolocator;
+using Plugin.Geolocator;
 
 
 namespace XTabs
@@ -104,8 +104,11 @@ namespace XTabs
                     responseContent = response.Content.ReadAsStringAsync().Result;
 
                     List<Face> Face = JsonConvert.DeserializeObject<List<Face>>(responseContent);
+                    Debug.WriteLine(Face[0].getTop().Item1);
                     Debug.WriteLine(Face[0].getTop().Item2);
-                    TagLabel.Text = Face[0].getTop().Item2;
+                    TagLabel.Text = "Emotion shown is: " + (Face[0].getTop().Item2);
+
+                
                 }
                 file.Dispose();
 
