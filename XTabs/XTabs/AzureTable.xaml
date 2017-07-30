@@ -15,10 +15,6 @@
                         <ViewCell>
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Emotions" HorizontalOptions="FillAndExpand" Margin="5,0,0,0" VerticalTextAlignment="Center" />
-                                    <Label Text="Date and Time" HorizontalTextAlignment="End"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Emotion}" HorizontalOptions="FillAndExpand" Margin="5,0,0,0" VerticalTextAlignment="Center" />
                                 <Label Text="{Binding createdAT}" HorizontalTextAlignment="End"/>
                                 </StackLayout>

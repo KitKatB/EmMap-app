@@ -46,9 +46,15 @@ namespace XTabs
             locator.DesiredAccuracy = 10;
 
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
-            Debug.WriteLine(position.Latitude);
-            Debug.WriteLine(position.Longitude);
-            return await emmaptable.Where(EmotionInformation => EmotionInformation.Latitude == position.Latitude).Where(EmotionInformation => EmotionInformation.Longitude == position.Longitude).ToListAsync();
+            string plat = Convert.ToString(position.Latitude);
+            string plong = Convert.ToString(position.Longitude);
+
+            return await emmaptable.Where(record => record.Latitude == plat).Where(record => record.Longitude == plong).ToListAsync();
+        }
+
+        public async Task PostEmotionInformation(emmaptable emmaptable)
+        {
+            await this.emmaptable.InsertAsync(emmaptable);
         }
     }
 }

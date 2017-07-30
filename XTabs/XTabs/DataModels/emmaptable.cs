@@ -16,10 +16,10 @@ namespace XTabs.DataModels
         public string Emotion { get; set; }
 
         [JsonProperty(PropertyName = "Longitude")]
-        public double Longitude { get; set; }
+        public string Longitude { get; set; }
 
         [JsonProperty(PropertyName = "Latitude")]
-        public double Latitude { get; set; }
+        public string Latitude { get; set; }
 
         [JsonProperty(PropertyName = "createdAt")]
         public string createdAT { get; set; }
