@@ -8,7 +8,7 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Emotions at this location" TextColor="White" BackgroundColor="Red"  Clicked="Handle_ClickedAsync" />
+            <Button Text="Get Emotions" TextColor="White" BackgroundColor="Red"  Clicked="Handle_ClickedAsync" />
             <ListView x:Name="EmotionsList" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
