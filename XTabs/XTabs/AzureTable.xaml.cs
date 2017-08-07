@@ -23,7 +23,7 @@ namespace XTabs
         async void Handle_ClickedAsync(object sender, System.EventArgs e)
         {
             List<emmaptable> emotionInformation = await AzureManager.AzureManagerInstance.GetEmotionInformation();
-
+            EmotionsList.ClearValue(ListView.ItemsSourceProperty);
             EmotionsList.ItemsSource = emotionInformation;
         }
     }

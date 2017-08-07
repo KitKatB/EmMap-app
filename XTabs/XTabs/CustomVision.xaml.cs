@@ -104,26 +104,34 @@ namespace XTabs
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                     response = await client.PostAsync(uri, content);
                     responseContent = response.Content.ReadAsStringAsync().Result;
-
                     List<Face> Face = JsonConvert.DeserializeObject<List<Face>>(responseContent);
-                    TagLabel.Text = "Emotion shown is: " + (Face[0].getTop().Item2);
+                    try {
+                        TagLabel.Text = "Emotion shown is: " + (Face[0].getTop().Item2);
+                        
+                        var locator = CrossGeolocator.Current;
+                        locator.DesiredAccuracy = 1000;
 
-                    var locator = CrossGeolocator.Current;
-                    locator.DesiredAccuracy = 10;
+                        var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
+                        string plat = Convert.ToString(position.Latitude);
+                        string plong = Convert.ToString(position.Longitude);
+                        
+                        emmaptable emmapmodel = new emmaptable();
+                        emmapmodel.Latitude = plat;
+                        emmapmodel.Longitude = plong;
+                        emmapmodel.Emotion = Face[0].getTop().Item2;
 
-                    var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
-                    string plat = Convert.ToString(position.Latitude);
-                    string plong = Convert.ToString(position.Longitude);
-
-                    emmaptable emmapmodel = new emmaptable();
-                    emmapmodel.Latitude = plat;
-                    emmapmodel.Longitude = plong;
-                    emmapmodel.Emotion = Face[0].getTop().Item2;
-
-                    Debug.WriteLine((float)position.Latitude);
-                    Debug.WriteLine((float)position.Longitude);
-
-                    await AzureManager.AzureManagerInstance.PostEmotionInformation(emmapmodel);
+                        Debug.WriteLine((float)position.Latitude);
+                        Debug.WriteLine((float)position.Longitude);
+                        
+                        await AzureManager.AzureManagerInstance.PostEmotionInformation(emmapmodel);
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("Error in face processing (detection/deserialisation/post)");
+                        TagLabel.Text = "Cannot detect face. Please try again.";
+                    }
+                   
                 }
                 file.Dispose();
 

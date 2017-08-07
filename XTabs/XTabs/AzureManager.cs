@@ -15,11 +15,11 @@ namespace XTabs
 
         private static AzureManager instance;
         private MobileServiceClient client;
-        private IMobileServiceTable<emmaptable> emmaptable;
+        private IMobileServiceTable<emmaptable> emotiontable;
         private AzureManager()
         {
             this.client = new MobileServiceClient("http://emmap.azurewebsites.net");
-            this.emmaptable = this.client.GetTable<emmaptable>();
+            this.emotiontable = this.client.GetTable<emmaptable>();
         }
 
         public MobileServiceClient AzureClient
@@ -43,18 +43,17 @@ namespace XTabs
         {
            
             var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 10;
+            locator.DesiredAccuracy = 1000;
 
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
             string plat = Convert.ToString(position.Latitude);
             string plong = Convert.ToString(position.Longitude);
 
-            return await emmaptable.Where(record => record.Latitude == plat).Where(record => record.Longitude == plong).ToListAsync();
         }
 
-        public async Task PostEmotionInformation(emmaptable emmaptable)
+        public async Task PostEmotionInformation(emmaptable emotionmodel)
         {
-            await this.emmaptable.InsertAsync(emmaptable);
+            await this.emotiontable.InsertAsync(emotionmodel);
         }
     }
 }
