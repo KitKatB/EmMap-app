@@ -1,5 +1,6 @@
 # EmMap-app
-
+Emotion Map<br />
+It can only detect 1 face at a time for now. <br />
 
 Android installed NuGet packages:<br />
   Microsoft.Azure.Mobile.Client<br />
