@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:XTabs" 
     x:Class="XTabs.MainPage">
     <local:AzureTable />
-    <NavigationPage Title="Analyzer">
+    <NavigationPage Title="Emotion Analyser">
         <x:Arguments>
             <local:CustomVision />
         </x:Arguments>

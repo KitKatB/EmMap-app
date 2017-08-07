@@ -3,7 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="XTabs.AzureTable"
              Title="Home">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
     <ContentPage.Content>
-        <Label Text="Azure Tables Navigation Page Tab" VerticalOptions="Center" HorizontalOptions="Center" />
+        <StackLayout>
+            <Button Text="Emotions from this location" TextColor="White" BackgroundColor="Red"  Clicked="Handle_ClickedAsync" />
+            <ListView x:Name="EmotionsList" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Emotion}" HorizontalOptions="FillAndExpand" Margin="5,0,0,0" VerticalTextAlignment="Center" />
+                                <Label Text="{Binding createdAT}" HorizontalTextAlignment="End"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
